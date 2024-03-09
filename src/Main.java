@@ -1,3 +1,10 @@
+import constants.Status;
+import manager.TaskManager;
+import task.Epic;
+import task.Subtask;
+import task.Task;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -30,8 +37,10 @@ public class Main {
         System.out.println(TaskManager.getAllTasks());
         subtask1e1.setStatus(Status.IN_PROGRESS);
         TaskManager.updateSubtask(subtask1e1);
+
         subtask2e1.setStatus(Status.DONE);
         TaskManager.updateSubtask(subtask2e1);
+
         subtask3e2.setStatus(Status.DONE);
         TaskManager.updateSubtask(subtask3e2);
 
@@ -46,6 +55,9 @@ public class Main {
         TaskManager.deleteEpic(epic2.getId());
         System.out.println(TaskManager.getAllSubtasks());
         System.out.println(TaskManager.getAllEpics());
+
+        System.out.println("-READ-");
+        System.out.println(TaskManager.getEpicSubtasks(epic1.getId()));
 
     }
 }

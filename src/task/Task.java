@@ -1,8 +1,12 @@
+package task;
+
+import constants.Status;
+
 public class Task {
     protected String title;
     protected String description;
     protected int id;
-    protected Status status;
+     protected Status status;
 
     public Task(String title, String description) {
         this.title = title;

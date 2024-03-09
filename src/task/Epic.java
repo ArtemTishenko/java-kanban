@@ -1,22 +1,30 @@
+package task;
+
+import constants.Status;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Epic extends Task {
-    ArrayList<Subtask> subtasks = new ArrayList<>();
+    ArrayList<Integer> subtasksId = new ArrayList<>();
 
     public Epic(String title, String description) {
         super(title, description);
     }
 
-    public Status setStatus() {
+    public void setStatus(HashMap<Integer,Subtask> subtasks) {
+
+
         Status currentStatus = Status.NEW;
         int counterStatus =0;
         if (subtasks.size() > 0) {
-            for (Subtask subtask : subtasks) {
+
+            for (Subtask subtask : subtasks.values()) {
                 if (subtask.getStatus().equals(Status.DONE)) {
                     counterStatus++;
                 }
                 if (subtask.getStatus().equals(Status.IN_PROGRESS)) {
                     currentStatus = Status.IN_PROGRESS;
+                    break;
                 }
             }
             if(counterStatus == subtasks.size()){
@@ -24,23 +32,21 @@ public class Epic extends Task {
             }else if(counterStatus > 0 && counterStatus < subtasks.size()){
                 currentStatus = Status.IN_PROGRESS;
             }
-        } else {
-            currentStatus = Status.NEW;
         }
         super.status = currentStatus;
-        return currentStatus;
+
     }
 
-    public void addSubtask(Subtask subtask) {
-        subtasks.add(subtask);
-        super.status = setStatus();
+    public void addSubtaskId(Integer subtaskId, HashMap<Integer,Subtask> subtasks) {
+        subtasksId.add(subtaskId);
+        setStatus(subtasks);
     }
 
-    public ArrayList<Subtask> getEpicSubtasks() {
-        return subtasks;
+    public ArrayList<Integer> getSubtasksId() {
+        return subtasksId;
     }
     public void deleteSubtasks(){
-        this.subtasks.clear();
+        this.subtasksId.clear();
     }
 
 
@@ -53,7 +59,7 @@ public class Epic extends Task {
                 ", description='" + super.description + '\'' +
                 ", id=" + super.id +
                 ", status=" + super.status +
-                ", subtasks.size=" + subtasks.size() +
+                ", subtasksId.size=" + subtasksId.size() +
                 '}';
 
         return result;
