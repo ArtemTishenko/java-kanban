@@ -29,7 +29,10 @@ public class TaskManager {
 
     public Epic createEpic(Epic epic) {
         epic.setId(++counter);
-        epic.setStatus(subtasks);
+
+        HashMap<Integer, Subtask> epicSubtask = new HashMap<>();
+        epic.setStatus(epicSubtask);
+
         epics.put(epic.getId(), epic);
         return epic;
     }
@@ -142,9 +145,18 @@ public class TaskManager {
     public void deleteSubtask(int id) {
         if (subtasks.containsKey(id)) {
             Epic currentEpic = epics.get(getSubtaskById(id).getEpicId());
-            currentEpic.getSubtasksId().remove(getSubtaskById(id));
-            currentEpic.setStatus(subtasks);
-            subtasks.remove(id);
+            currentEpic.getSubtasksId().remove(Integer.valueOf(id));
+            subtasks.remove((Integer.valueOf(id)));
+
+            HashMap<Integer, Subtask> epicSubtasks = new HashMap<>();
+            for (Subtask subtask : subtasks.values()) {
+                if (subtask.getEpicId() == currentEpic.getId()) {
+                    epicSubtasks.put(subtask.getId(), subtask);
+                }
+            }
+            currentEpic.setStatus(epicSubtasks);
+
+
         }
     }
 
@@ -170,7 +182,8 @@ public class TaskManager {
         subtasks.clear();
         for (Epic epic : epics.values()) {
             epic.deleteSubtasks();
-            epic.setStatus(subtasks);
+            HashMap<Integer, Subtask> epicSubtasks = new HashMap<>();
+            epic.setStatus(epicSubtasks);
         }
     }
 
