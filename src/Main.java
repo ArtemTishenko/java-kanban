@@ -44,12 +44,16 @@ public class Main {
         subtask3e2.setStatus(Status.DONE);
         TaskManager.updateSubtask(subtask3e2);
 
+        epic1.setTitle("Epic1 Updated");
+        TaskManager.updateEpic(epic1);
+
         System.out.println(TaskManager.getAllSubtasks());
         System.out.println(TaskManager.getAllEpics());
 
         System.out.println("-DELETE-");
         TaskManager.deleteTask(task2.getId());
         System.out.println(TaskManager.getAllTasks());
+
         TaskManager.deleteSubtask(subtask1e1.getId());
         System.out.println(TaskManager.getAllSubtasks());
         TaskManager.deleteEpic(epic2.getId());
@@ -58,6 +62,12 @@ public class Main {
 
         System.out.println("-READ-");
         System.out.println(TaskManager.getEpicSubtasks(epic1.getId()));
+
+        System.out.println("-DELETE ALL-");
+        TaskManager.deleteAllSubtasks();
+        System.out.println(TaskManager.getAllEpics());
+
+
 
     }
 }
