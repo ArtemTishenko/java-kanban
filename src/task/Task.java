@@ -2,6 +2,8 @@ package task;
 
 import constants.Status;
 
+import java.util.Objects;
+
 public class Task {
     protected String title;
     protected String description;
@@ -11,6 +13,17 @@ public class Task {
     public Task(String title, String description) {
         this.title = title;
         this.description = description;
+    }
+    public Task(String title, String description, int id) {
+        this.title = title;
+        this.description = description;
+        this.id = id;
+    }
+    public Task(String title, String description, int id, Status status) {
+        this.title = title;
+        this.description = description;
+        this.id = id;
+        this.status = status;
     }
 
     public void setId(int id) {
@@ -54,5 +67,18 @@ public class Task {
                 ", id=" + id +
                 ", status=" + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id && Objects.equals(title, task.title) && Objects.equals(description, task.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, id);
     }
 }
