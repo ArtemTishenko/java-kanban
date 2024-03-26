@@ -23,6 +23,7 @@ public class InMemoryHistoryMangerTest {
         inMemoryTaskManager.createTask(task2);
 
 
+
         Task inMemoryTask1 = inMemoryTaskManager.getTaskById(task1.getId());
         Task inMemoryTask2 = inMemoryTaskManager.getTaskById(task2.getId());
         testListHistory.add(new Task(
@@ -31,6 +32,7 @@ public class InMemoryHistoryMangerTest {
                 inMemoryTask1.getId(),
                 inMemoryTask1.getStatus()
         ));
+        inMemoryHistoryManager.add(task1);
 
         testListHistory.add(new Task(
                 inMemoryTask2.getTitle(),
@@ -38,7 +40,8 @@ public class InMemoryHistoryMangerTest {
                 inMemoryTask2.getId(),
                 inMemoryTask1.getStatus()
         ));
-
+        inMemoryHistoryManager.add(task2);
+        inMemoryHistoryManager.add(task1);
         inMemoryTaskManager.getTaskById(task1.getId()).setStatus(Status.DONE);
         testListHistory.add(new Task(
                 inMemoryTask1.getTitle(),
@@ -46,6 +49,7 @@ public class InMemoryHistoryMangerTest {
                 inMemoryTask1.getId(),
                 Status.NEW //устанавливаем здесь статус new по скольку второй вызов getId() добавляет в историю не измененный статус
         ));
+
         inMemoryTaskManager.getTaskById(task1.getId());
         testListHistory.add(new Task(
                 inMemoryTask1.getTitle(),
@@ -53,6 +57,8 @@ public class InMemoryHistoryMangerTest {
                 inMemoryTask1.getId(),
                 inMemoryTask1.getStatus()
         ));
+        inMemoryHistoryManager.add(task1);
+
         System.out.println(testListHistory);
         System.out.println(inMemoryHistoryManager.getHistory());
 
