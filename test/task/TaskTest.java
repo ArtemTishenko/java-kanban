@@ -1,9 +1,7 @@
 package task;
 
-import manager.HistoryManager;
 import manager.InMemoryHistoryManager;
 import manager.InMemoryTaskManager;
-import manager.Managers;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,17 +16,14 @@ public class TaskTest {
         Task task1 = new Task("Test addNewTask", "Test addNewTask description");
         Task task2 = new Task("Test addNewTask", "Test addNewTask description");
         Task task3 = new Task("Test addNewTask", "Test addNewTask description",1);
-        Task task4 = new Task("Test addNewTask", "Test addNewTask description",100);
 
 
         taskManager.createTask(task1);
         taskManager.createTask(task2);
         taskManager.createTask(task3);
-        taskManager.createTask(task4);
 
-        assertEquals(1, task1.getId());// генерация по counter
-        assertEquals(3, task3.getId());//генерация если существует задача с таким же id
-        assertEquals(100, task4.getId());//генерация по преданному аргументу
+        assertEquals(1, task1.getId());
+        assertEquals(3, task3.getId());
     }
 
     @Test

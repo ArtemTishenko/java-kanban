@@ -7,7 +7,7 @@ import task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InMemoryHistoryMangerTest {
@@ -25,45 +25,38 @@ public class InMemoryHistoryMangerTest {
 
 
         Task inMemoryTask1 = inMemoryTaskManager.getTaskById(task1.getId());
-        Task inMemoryTask2 = inMemoryTaskManager.getTaskById(task2.getId());
         testListHistory.add(new Task(
                 inMemoryTask1.getTitle(),
                 inMemoryTask1.getDescription(),
                 inMemoryTask1.getId(),
                 inMemoryTask1.getStatus()
         ));
-        inMemoryHistoryManager.add(task1);
+        inMemoryHistoryManager.add(new Task(task1.getTitle(),task1.getDescription(),task1.getId(),task1.getStatus()));
 
+
+        Task inMemoryTask2 = inMemoryTaskManager.getTaskById(task2.getId());
         testListHistory.add(new Task(
                 inMemoryTask2.getTitle(),
                 inMemoryTask2.getDescription(),
                 inMemoryTask2.getId(),
-                inMemoryTask1.getStatus()
+                inMemoryTask2.getStatus()
         ));
         inMemoryHistoryManager.add(task2);
-        inMemoryHistoryManager.add(task1);
-        inMemoryTaskManager.getTaskById(task1.getId()).setStatus(Status.DONE);
-        testListHistory.add(new Task(
-                inMemoryTask1.getTitle(),
-                inMemoryTask1.getDescription(),
-                inMemoryTask1.getId(),
-                Status.NEW //устанавливаем здесь статус new по скольку второй вызов getId() добавляет в историю не измененный статус
-        ));
 
-        inMemoryTaskManager.getTaskById(task1.getId());
+        Task testInMemoryTask = inMemoryTaskManager.getTaskById(task1.getId());
+        testInMemoryTask.setStatus(Status.DONE);
         testListHistory.add(new Task(
                 inMemoryTask1.getTitle(),
                 inMemoryTask1.getDescription(),
                 inMemoryTask1.getId(),
                 inMemoryTask1.getStatus()
         ));
-        inMemoryHistoryManager.add(task1);
+        inMemoryHistoryManager.add(new Task(task1.getTitle(),task1.getDescription(),task1.getId(),task1.getStatus()));
 
         System.out.println(testListHistory);
         System.out.println(inMemoryHistoryManager.getHistory());
 
         List<Task> inMemoryHistory = inMemoryHistoryManager.getHistory();
-
         assertEquals(testListHistory.toString(), inMemoryHistory.toString());
 
     }
