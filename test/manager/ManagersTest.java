@@ -7,11 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ManagersTest {
     @Test
     void shouldReturnReadyClassFromManager() {
-        Managers managers = new Managers();
         InMemoryTaskManager inMemoryTaskManagerTest = new InMemoryTaskManager();
         InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
-        var taskManagerTest = managers.getDefault();
-        var historyManagerTest = managers.getDefaultHistory();
+        var taskManagerTest = Managers.getDefault();
+        var historyManagerTest = Managers.getDefaultHistory();
 
         taskManagerTest.getAllTasks();
         inMemoryTaskManagerTest.getAllTasks();

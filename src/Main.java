@@ -81,10 +81,7 @@ public class Main {
         System.out.println(InMemoryTaskManager.getAllEpics());
 
         System.out.println("-MANAGER-");
-        Managers manager1 = new Managers();
-        TaskManager inMemoryTaskManager = manager1.getDefault();
-
-
+        TaskManager inMemoryTaskManager = Managers.getDefault();
 
         inMemoryTaskManager.createTask(task1);
         inMemoryTaskManager.createTask(task2);
@@ -96,22 +93,12 @@ public class Main {
         inMemoryTaskManager.createSubtask(subtask2e1);
 
         inMemoryTaskManager.getTaskById(task1.getId());
+        inMemoryTaskManager.getEpicById(epic1.getId());
+        inMemoryTaskManager.getSubtaskById(subtask2e1.getId());
 
         printAllTasks(inMemoryTaskManager);
 
 
-        HistoryManager inMemoryHistoryManager =  manager1.getDefaultHistory();
-        System.out.println("-inMemoryHistoryManager.getHistory()-");
-        System.out.println(inMemoryHistoryManager.getHistory());
-        task1.setDescription("TEST TEST TEST");
-        inMemoryTaskManager.updateTask(task1);
-        inMemoryTaskManager.getTaskById(task1.getId());
-        System.out.println(inMemoryHistoryManager.getHistory());
-
-        var testManager = new Managers();
-        var testDefault = testManager.getDefault();
-        InMemoryHistoryManager testInMemoryHistoryManager = new InMemoryHistoryManager();
-        System.out.println(testDefault.equals(testInMemoryHistoryManager));
 
     }
 
