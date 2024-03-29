@@ -11,7 +11,7 @@ public class InMemoryHistoryManager implements HistoryManager{
 
     @Override
     public void add(Task task) {
-        if(!task.equals(null)){
+        if(task!=null){
             if(historyList.size() < HISTORY_SIZE){
                 historyList.add(task);
 
@@ -25,10 +25,7 @@ public class InMemoryHistoryManager implements HistoryManager{
 
     @Override
     public List<Task> getHistory() {
-       LinkedList<Task> cloneHistoryList = new LinkedList<>();
-       for(Task taskHistory:historyList){
-           cloneHistoryList.add(taskHistory);
-       }
+       LinkedList<Task> cloneHistoryList = new LinkedList<>(historyList);
         return cloneHistoryList;
     }
 }
