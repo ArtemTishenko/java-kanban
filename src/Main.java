@@ -8,6 +8,17 @@ import task.Task;
 public class Main {
 
     public static void main(String[] args) {
+        customScenery();
+        userScenery();
+    }
+
+    private static void printAllTasks( TaskManager manager) {
+        System.out.println("История:");
+        for (Task task : manager.getHistory()) {
+            System.out.println(task);
+        }
+    }
+    private static void customScenery(){
         InMemoryTaskManager InMemoryTaskManager = new InMemoryTaskManager();
         System.out.println("-CREATE-");
         Task task1 = new Task("Task1", "Description task 1");
@@ -51,7 +62,11 @@ public class Main {
         System.out.println(InMemoryTaskManager.getAllEpics());
 
         System.out.println("-DELETE-");
+        InMemoryTaskManager.getTaskById(task2.getId());
+
+        System.out.println("@@@@@History"+InMemoryTaskManager.getHistory());
         InMemoryTaskManager.deleteTask(task2.getId());
+        System.out.println("@@@@@History"+InMemoryTaskManager.getHistory());
         System.out.println(InMemoryTaskManager.getAllTasks());
 
         InMemoryTaskManager.deleteSubtask(subtask1e1.getId());
@@ -60,18 +75,15 @@ public class Main {
         System.out.println(InMemoryTaskManager.getAllSubtasks());
         System.out.println(InMemoryTaskManager.getAllEpics());
 
+        System.out.println("___________________");
+
+
+        System.out.println("---------------------");
+
         System.out.println("-READ-");
         System.out.println(InMemoryTaskManager.getEpicSubtasks(epic1.getId()));
         InMemoryTaskManager.getTaskById(task1.getId());
         InMemoryTaskManager.getEpicById(epic1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
-        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
         InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
         System.out.println(InMemoryTaskManager.getHistory());
 
@@ -85,7 +97,6 @@ public class Main {
 
         inMemoryTaskManager.createTask(task1);
         inMemoryTaskManager.createTask(task2);
-
         inMemoryTaskManager.createEpic(epic1);
         inMemoryTaskManager.createSubtask(subtask1e1);
         inMemoryTaskManager.createSubtask(subtask1e1);
@@ -95,35 +106,55 @@ public class Main {
         inMemoryTaskManager.getTaskById(task1.getId());
         inMemoryTaskManager.getEpicById(epic1.getId());
         inMemoryTaskManager.getSubtaskById(subtask2e1.getId());
+        inMemoryTaskManager.getEpicById(epic1.getId());
 
         printAllTasks(inMemoryTaskManager);
 
-
-
     }
+    private static void userScenery(){
+        //1
+        InMemoryTaskManager InMemoryTaskManager = new InMemoryTaskManager();
 
-    private static void printAllTasks( TaskManager manager) {
-        System.out.println("Задачи:");
-        for (Task task : manager.getAllEpics()) {
-            System.out.println(task);
-        }
-        System.out.println("Эпики:");
-        for (Task epic : manager.getAllEpics()) {
-            System.out.println(epic);
+        Task task1 = new Task("Task1", "Description task 1");
+        Task task2 = new Task("Task2", "Description task 2");
+        InMemoryTaskManager.createTask(task1);
+        InMemoryTaskManager.createTask(task2);
 
-            for (Task task : manager.getEpicSubtasks(epic.getId())) {
-                System.out.println("--> " + task);
-            }
-        }
-        System.out.println("Подзадачи:");
-        for (Task subtask : manager.getAllSubtasks()) {
-            System.out.println(subtask);
-        }
+        Epic epic1 = new Epic("Epic 1", "Description epic 1");
+        InMemoryTaskManager.createEpic(epic1);
+        Subtask subtask1e1 = new Subtask("Subtask 1 epic1", "Description subtask 1ep1", epic1.getId());
+        Subtask subtask2e1 = new Subtask("Subtask 2 epic1", "Description subtask 2ep1", epic1.getId());
+        InMemoryTaskManager.createSubtask(subtask1e1);
+        InMemoryTaskManager.createSubtask(subtask2e1);
 
-        System.out.println("История:");
-        for (Task task : manager.getHistory()) {
-            System.out.println(task);
-        }
+        Epic epic2 = new Epic("Epic 2", "Description epic 2");
+        InMemoryTaskManager.createEpic(epic2);
+        //2
+        InMemoryTaskManager.getTaskById(task2.getId());
+        InMemoryTaskManager.getTaskById(task1.getId());
+        InMemoryTaskManager.getEpicById(epic1.getId());
+        InMemoryTaskManager.getEpicById(epic2.getId());
+        InMemoryTaskManager.getEpicById(epic2.getId());
+        InMemoryTaskManager.getSubtaskById(subtask1e1.getId());
+        InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
+        printAllTasks(InMemoryTaskManager);
+        InMemoryTaskManager.getSubtaskById(subtask1e1.getId());
+        InMemoryTaskManager.getTaskById(task1.getId());
+        InMemoryTaskManager.getEpicById(epic1.getId());
+        //3
+        printAllTasks(InMemoryTaskManager);
+
+        //4
+        InMemoryTaskManager.deleteTask(task1.getId());
+        printAllTasks(InMemoryTaskManager);
+
+        //5
+        InMemoryTaskManager.deleteEpic(epic1.getId());
+        printAllTasks(InMemoryTaskManager);
+
+
+
+
     }
 
 }

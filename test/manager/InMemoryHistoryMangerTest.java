@@ -60,4 +60,26 @@ public class InMemoryHistoryMangerTest {
         assertEquals(testListHistory.toString(), inMemoryHistory.toString());
 
     }
+
+    @Test
+    void shouldReturnEmptyArrayAfterDeletingTaskFromHistory(){
+        Task task1 = new Task("Test addNewTask1", "Test addNewTask description");
+        inMemoryTaskManager.createTask(task1);
+        Task inMemoryTask1 = inMemoryTaskManager.getTaskById(task1.getId());
+        ArrayList<Task> testListHistory = new ArrayList<>();
+
+        testListHistory.add(new Task(
+                inMemoryTask1.getTitle(),
+                inMemoryTask1.getDescription(),
+                inMemoryTask1.getId(),
+                inMemoryTask1.getStatus()
+        ));
+        inMemoryHistoryManager.add(new Task(task1.getTitle(),task1.getDescription(),task1.getId(),task1.getStatus()));
+
+        List<Task> inMemoryHistory = inMemoryHistoryManager.getHistory();
+        assertEquals(testListHistory.toString(), inMemoryHistory.toString());
+
+        inMemoryHistoryManager.remove(task1.getId());
+        assertEquals(inMemoryHistoryManager.getHistory().size(), 0);
+    }
 }
