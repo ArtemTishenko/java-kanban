@@ -12,13 +12,14 @@ public class Main {
         userScenery();
     }
 
-    private static void printAllTasks( TaskManager manager) {
+    private static void printAllTasks(TaskManager manager) {
         System.out.println("История:");
         for (Task task : manager.getHistory()) {
             System.out.println(task);
         }
     }
-    private static void customScenery(){
+
+    private static void customScenery() {
         InMemoryTaskManager InMemoryTaskManager = new InMemoryTaskManager();
         System.out.println("-CREATE-");
         Task task1 = new Task("Task1", "Description task 1");
@@ -103,7 +104,8 @@ public class Main {
         printAllTasks(inMemoryTaskManager);
 
     }
-    private static void userScenery(){
+
+    private static void userScenery() {
         //1
         InMemoryTaskManager InMemoryTaskManager = new InMemoryTaskManager();
 
@@ -143,8 +145,6 @@ public class Main {
         //5
         InMemoryTaskManager.deleteEpic(epic1.getId());
         printAllTasks(InMemoryTaskManager);
-
-
 
 
     }
