@@ -35,25 +35,4 @@ public class Node{
         this.next = next;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Node{" +
-//                "prev=" + prev +
-//                ", task=" + task +
-//                ", next=" + next +
-//                '}';
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Node node = (Node) o;
-//        return Objects.equals(prev, node.prev) && Objects.equals(task, node.task) && Objects.equals(next, node.next);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(prev, task, next);
-//    }
 }

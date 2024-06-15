@@ -64,9 +64,7 @@ public class Main {
         System.out.println("-DELETE-");
         InMemoryTaskManager.getTaskById(task2.getId());
 
-        System.out.println("@@@@@History"+InMemoryTaskManager.getHistory());
         InMemoryTaskManager.deleteTask(task2.getId());
-        System.out.println("@@@@@History"+InMemoryTaskManager.getHistory());
         System.out.println(InMemoryTaskManager.getAllTasks());
 
         InMemoryTaskManager.deleteSubtask(subtask1e1.getId());
@@ -75,18 +73,12 @@ public class Main {
         System.out.println(InMemoryTaskManager.getAllSubtasks());
         System.out.println(InMemoryTaskManager.getAllEpics());
 
-        System.out.println("___________________");
-
-
-        System.out.println("---------------------");
-
         System.out.println("-READ-");
         System.out.println(InMemoryTaskManager.getEpicSubtasks(epic1.getId()));
         InMemoryTaskManager.getTaskById(task1.getId());
         InMemoryTaskManager.getEpicById(epic1.getId());
         InMemoryTaskManager.getSubtaskById(subtask2e1.getId());
         System.out.println(InMemoryTaskManager.getHistory());
-
 
         System.out.println("-DELETE ALL-");
         InMemoryTaskManager.deleteAllSubtasks();
