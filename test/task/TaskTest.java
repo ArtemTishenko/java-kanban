@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TaskTest {
 
     @Test
-    void shouldHaveNoConflictTaskWithGeneratedIdAndWritten(){
+    void shouldHaveNoConflictTaskWithGeneratedIdAndWritten() {
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
         Task task1 = new Task("Test addNewTask", "Test addNewTask description");
         Task task2 = new Task("Test addNewTask", "Test addNewTask description");
-        Task task3 = new Task("Test addNewTask", "Test addNewTask description",1);
+        Task task3 = new Task("Test addNewTask", "Test addNewTask description", 1);
 
 
         taskManager.createTask(task1);
@@ -28,8 +28,8 @@ public class TaskTest {
 
     @Test
     void shouldCreateTaskAndFindById() {
-        Task task1 = new Task("title1","desc1");
-        Epic epic1 = new Epic("epic1","descEpic1",2);
+        Task task1 = new Task("title1", "desc1");
+        Epic epic1 = new Epic("epic1", "descEpic1", 2);
         Subtask subtask1 = new Subtask("subtask1", "descSubtask1", 2);
 
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
@@ -40,15 +40,14 @@ public class TaskTest {
         assertNotNull(task1);
         assertNotNull(subtask1);
         assertNotNull(epic1);
-        assertEquals(epic1.getClass(),taskManager.getEpicById(epic1.getId()).getClass(), "Возвращает верный класс эпика");
-        assertEquals(subtask1.getClass(),taskManager.getSubtaskById(subtask1.getId()).getClass(),"Возвращает верный класс подзадачи");
-        assertEquals(task1.getClass(),taskManager.getTaskById(task1.getId()).getClass(),"Возвращает верный класс задачи");
+        assertEquals(epic1.getClass(), taskManager.getEpicById(epic1.getId()).getClass(), "Возвращает верный класс эпика");
+        assertEquals(subtask1.getClass(), taskManager.getSubtaskById(subtask1.getId()).getClass(), "Возвращает верный класс подзадачи");
+        assertEquals(task1.getClass(), taskManager.getTaskById(task1.getId()).getClass(), "Возвращает верный класс задачи");
 
 
-
-        assertEquals(task1.toString(),taskManager.getTaskById(task1.getId()).toString(),"Возаращает верную задачу по id");
-        assertEquals(subtask1.toString(),taskManager.getSubtaskById(subtask1.getId()).toString(), "Возаращает верную подзадачу по id");
-        assertEquals(epic1.toString(),taskManager.getEpicById(epic1.getId()).toString(),"Возаращает верный эпик по id");
+        assertEquals(task1.toString(), taskManager.getTaskById(task1.getId()).toString(), "Возаращает верную задачу по id");
+        assertEquals(subtask1.toString(), taskManager.getSubtaskById(subtask1.getId()).toString(), "Возаращает верную подзадачу по id");
+        assertEquals(epic1.toString(), taskManager.getEpicById(epic1.getId()).toString(), "Возаращает верный эпик по id");
     }
 
 
@@ -91,8 +90,8 @@ public class TaskTest {
         }
 
         assertEquals(testEpik, taskManager.getEpicById(epic1.getId()));
-        assertEquals(epic1, taskManager.getEpicById(epic1.getId()),"Эпики одинаковы, елси id одинаковы");
-        assertEquals(subtask1, taskManager.getSubtaskById(subtask1.getId()),"Сабтаскы одинаковы, елси id одинаковы");
+        assertEquals(epic1, taskManager.getEpicById(epic1.getId()), "Эпики одинаковы, елси id одинаковы");
+        assertEquals(subtask1, taskManager.getSubtaskById(subtask1.getId()), "Сабтаскы одинаковы, елси id одинаковы");
 
     }
 
@@ -113,6 +112,7 @@ public class TaskTest {
         assertEquals(1, tasks.size(), "Неверное количество задач.");
         assertEquals(task, tasks.get(0), "Задачи не совпадают.");
     }
+
     @Test
     void add() {
         InMemoryHistoryManager historyManager = new InMemoryHistoryManager();

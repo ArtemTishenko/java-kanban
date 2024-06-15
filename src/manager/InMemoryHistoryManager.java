@@ -5,16 +5,16 @@ import task.Task;
 
 import java.util.*;
 
-public class InMemoryHistoryManager implements HistoryManager{
+public class InMemoryHistoryManager implements HistoryManager {
     private final ArrayList<Task> historyList = new ArrayList<>();
-    private HashMap<Integer,Node> historyMap = new HashMap<>();
+    private HashMap<Integer, Node> historyMap = new HashMap<>();
     private Node tail;
     private Node head;
 
     @Override
     public void add(Task task) {
-        if(historyMap.containsKey(task.getId())){
-            Node node =  historyMap.get(task.getId());
+        if (historyMap.containsKey(task.getId())) {
+            Node node = historyMap.get(task.getId());
             removeNode(node);
         }
         linkLast(task);
@@ -29,24 +29,23 @@ public class InMemoryHistoryManager implements HistoryManager{
 
     @Override
     public void remove(int id) {
-        if(historyMap.containsKey(id)){
+        if (historyMap.containsKey(id)) {
             Node removableNode = historyMap.get(id);
             removeNode(removableNode);
 
         }
     }
 
-    private void removeNode(Node node){
+    private void removeNode(Node node) {
         int id = node.getTask().getId();
         if (historyMap.containsKey(id)) {
             Node removableNode = historyMap.get(id);
 
             if (removableNode.equals(head)) {//Если это первый Node
-                if(head == tail) { //Проверяем, если этот Node единственный
+                if (head == tail) { //Проверяем, если этот Node единственный
                     head = null;
                     tail = null;
-                }
-                else {
+                } else {
                     head = removableNode.getNext(); //Записываем следующий Node как первый
                     head.setPrev(null);
                 }
@@ -69,12 +68,12 @@ public class InMemoryHistoryManager implements HistoryManager{
         tail = newNode;
         if (oldTail == null) {
             head = newNode;
-        }
-        else {
+        } else {
             tail.getPrev().setNext(tail);
         }
     }
-    private ArrayList<Task> getTasks(){
+
+    private ArrayList<Task> getTasks() {
         historyList.clear();
         if (head != null) {
             Node node = head;

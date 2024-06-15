@@ -22,7 +22,7 @@ public class InMemoryTaskManagerTest {
         ArrayList<Integer> idEpicSubtasks = inMemoryTaskManager.getEpicById(epic1.getId()).getSubtasksId();
         assertEquals(idEpicSubtasks.getFirst(), subtask1.getId());
         inMemoryTaskManager.deleteSubtask(subtask1.getId());
-        ArrayList<Integer> idEpicSubtasksEmpty= inMemoryTaskManager.getEpicById(epic1.getId()).getSubtasksId();
+        ArrayList<Integer> idEpicSubtasksEmpty = inMemoryTaskManager.getEpicById(epic1.getId()).getSubtasksId();
         assertTrue(idEpicSubtasksEmpty.isEmpty());
 
     }
