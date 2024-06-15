@@ -41,7 +41,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (historyMap.containsKey(id)) {
             Node removableNode = historyMap.get(id);
 
-            if (removableNode.equals(head)) {//Если это первый Node
+            if (removableNode.equals(head)) { //Если это первый Node
                 if (head == tail) { //Проверяем, если этот Node единственный
                     head = null;
                     tail = null;
