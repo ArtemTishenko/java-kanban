@@ -103,6 +103,8 @@ public class Main {
 
         printAllTasks(inMemoryTaskManager2);
 
+        inMemoryTaskManager2.deleteAllTasks();
+
     }
 
     private static void userScenery() {

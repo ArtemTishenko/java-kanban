@@ -1,38 +1,38 @@
 package task;
 
 
-public class Node {
-    Node prev;
-    Task task;
-    Node next;
+public class Node<T> {
+    Node<T> prev;
+    T task;
+    Node<T> next;
 
-    public Node(Node prev, Task task, Node next) {
+    public Node(Node<T> prev, T task, Node<T> next) {
         this.prev = prev;
         this.task = task;
         this.next = next;
     }
 
-    public Node getPrev() {
+    public Node<T> getPrev() {
         return prev;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(Node<T> prev) {
         this.prev = prev;
     }
 
-    public Task getTask() {
+    public T getTask() {
         return task;
     }
 
-    public void setTask(Task task) {
+    public void setTask(T task) {
         this.task = task;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
