@@ -63,6 +63,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
 
     }
+
     @Override
     public void linkLast(Task task) {
         Node<Task> oldTail = tail;
@@ -74,6 +75,7 @@ public class InMemoryHistoryManager implements HistoryManager {
             tail.getPrev().setNext(tail);
         }
     }
+
     @Override
     public ArrayList<Task> getTasks() {
         historyList.clear();
