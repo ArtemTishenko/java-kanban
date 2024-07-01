@@ -1,4 +1,5 @@
 package task;
+
 public class Subtask extends Task {
     private int epicId;
 
@@ -18,7 +19,7 @@ public class Subtask extends Task {
                 ", description='" + super.description + '\'' +
                 ", id=" + super.id +
                 ", status=" + super.status +
-                ", epicId=" +epicId +
+                ", epicId=" + epicId +
                 '}';
 
         return result;

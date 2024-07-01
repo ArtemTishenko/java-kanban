@@ -8,17 +8,19 @@ public class Task {
     protected String title;
     protected String description;
     protected int id;
-     protected Status status;
+    protected Status status;
 
     public Task(String title, String description) {
         this.title = title;
         this.description = description;
     }
+
     public Task(String title, String description, int id) {
         this.title = title;
         this.description = description;
         this.id = id;
     }
+
     public Task(String title, String description, int id, Status status) {
         this.title = title;
         this.description = description;
